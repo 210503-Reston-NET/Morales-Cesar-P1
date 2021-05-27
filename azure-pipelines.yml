@@ -6,9 +6,12 @@
 trigger:
 - main
 
-pool:
-  Default
+pool: Default
 
+variables:
+  solution: '**/'
+  buildPlatforms: 'Any CPU'
+  buildConfiguration: 'Release'
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
