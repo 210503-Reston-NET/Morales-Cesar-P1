@@ -14,14 +14,20 @@ variables:
   buildConfiguration: 'Release'
 steps:
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'PokestopSonarCloud'
+    organization: '210503-reston-net'
+    scannerMode: 'MSBuild'
+    projectKey: '210503-Reston-NET_Morales-Cesar-P1'
+    projectName: 'Morales-Cesar-P1'
 
-
-  - task: DotNetCoreCLI@2
-    displayName: Restore
-    inputs:
-      command: 'restore'
-      projects: $(solution)
-      feedsToUse: 'select'
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: 'restore'
+    projects: $(solution)
+    feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2
   displayName: Build
@@ -35,6 +41,11 @@ steps:
     command: 'test'
     projects: '**/4-devops/RestaurantReviews/RRTests/*.csproj'
 
+
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
@@ -42,13 +53,13 @@ steps:
     zipAfterPublish : true
     projects: '**/ WebUI/*csproj'
 
-  - task: AzureRmWebAppDeployment@4
-    inputs:
-      ConnectionType: 'AzureRM'
-      azureSubscription: 'Azure subscription 1(9e4b0356-2f63-4d62-a8a7-586f27cd6c10)'
-      appType: 'webApp'
-      WebAppName: 'Pokestop'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(9e4b0356-2f63-4d62-a8a7-586f27cd6c10)'
+    appType: 'webApp'
+    WebAppName: 'Pokestop'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 
 - script: |
