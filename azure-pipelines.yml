@@ -40,6 +40,12 @@ steps:
   inputs:
     command: 'test'
     projects: '**/4-devops/RestaurantReviews/RRTests/*.csproj'
+    arguments: --configuration $(buildConfiguration) --collect "Code Coverage"
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '../cobertura/coverage.xml'
 
 
 - task: SonarCloudAnalyze@1
