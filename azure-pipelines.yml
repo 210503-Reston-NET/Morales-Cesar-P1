@@ -13,10 +13,47 @@ variables:
   buildPlatforms: 'Any CPU'
   buildConfiguration: 'Release'
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+
+
+
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: 'restore'
+      projects: $(solution)
+      feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: 'build'
+    projects: $(solution)
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: 'test'
+    projects: '**/4-devops/RestaurantReviews/RRTests/*.csproj'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    zipAfterPublish : true
+    projects: '**/ WebUI/*csproj'
+
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'Azure subscription 1(9e4b0356-2f63-4d62-a8a7-586f27cd6c10)'
+      appType: 'webApp'
+      WebAppName: 'Pokestop'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+
