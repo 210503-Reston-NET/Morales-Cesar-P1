@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebUI.Models.OrderVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Storefrontsss)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customernumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Storefrontsss)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customernumber)
+                </td>
+                <td>
+                    @Html.ActionLink("View Order Details", "Index", "LineItem", new {  orde=item.IDs  }) |
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Back to Customer Menu", "Index", "Customer")
