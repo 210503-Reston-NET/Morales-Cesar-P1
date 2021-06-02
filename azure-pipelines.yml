@@ -52,11 +52,12 @@ steps:
 - task: SonarCloudPublish@1
   
 - task: DotNetCoreCLI@2
+  displayName: Publish
   inputs:
     command: 'publish'
     publishWebProjects: false
     zipAfterPublish : true
-    projects: '**/ WebUI/*.csproj'
+    projects: '**/WebUI/*csproj'
 
 
 - task: AzureRmWebAppDeployment@4
