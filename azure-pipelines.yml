@@ -9,11 +9,11 @@ trigger:
 pool: Default
 
 variables:
-  solution: '**/'
+  solution: '**/*.sln'
   buildPlatforms: 'Any CPU'
   buildConfiguration: 'Release'
-steps:
 
+steps:
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'PokestopSonarCloud'
