@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -16,9 +17,9 @@ namespace WebUI.Controllers
             _Buslog = bus;
         }
         // GET: LineItemController
-        public ActionResult Index()
+        public ActionResult Index(int orde)
         {
-            return View();
+            return View(_Buslog.GetLineItemsById(orde).Select(stores => new LineItemVM(stores)).ToList());
         }
 
         // GET: LineItemController/Details/5

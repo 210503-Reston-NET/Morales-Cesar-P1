@@ -70,8 +70,7 @@ namespace WebUI.Controllers
                 int ID = nums.Next(100, 999);
                 LineItem lineItem = new LineItem(ID, 1, orde, prod);
                 _Buslog.AddLineItem(lineItem);
-                // ViewBag.Inventory.InventoryQuantity = ViewBag.Inventory.InventoryQuantity - 1;
-                //ViewBag.Order.Total = ViewBag.Product.ProductPrice + ViewBag.Order.Total;
+              
 
                 _Buslog.UpdateInventories(store,prod);
                 
