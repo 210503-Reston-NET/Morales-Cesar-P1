@@ -31,12 +31,12 @@ To-do list:
 ## Getting Started
 
 To run the program:
-* git clone https://github.com/210503-Reston-NET/Morales-Cesar-P1.git
+*git clone https://github.com/210503-Reston-NET/Morales-Cesar-P1.git
 
 And you will have all of the code ready to run the program
 
 Another option:
-* to https://pokestop.azurewebsites.net/ and the app is available.
+*to https://pokestop.azurewebsites.net/ and the app is available.
 
 ## Usage
 *The photo below should be the first screen available:
